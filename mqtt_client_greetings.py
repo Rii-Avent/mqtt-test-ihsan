@@ -1,4 +1,3 @@
-from mqtt_publish_demo import on_publish
 import paho.mqtt.client as mqtt
 
 # define static variable
@@ -19,29 +18,27 @@ def on_connect(client, userdata, flags, rc):
  
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe(topic,qos=2)
+    client.subscribe(topic_greetings,qos=2)
  
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     payload_decoded = msg.payload.decode('utf-8')
 
-    print("Halo " + payload_decoded + ", selamat siang")
+    print(payload_decoded)
 
     # publish message yang diterima dengan dimodifikasi seperti diatas dan publish ke topic_greetings
     # client1.publish(topic,payload=message,qos=1)
     # isi jawaban disini
 
-    client.publish(topic_greetings, payload="Halo " + payload_decoded + ", selamat siang", qos=1)
+    # client.publsih(topic_greetings, payload="Halo " + payload_decoded + ", selamat siang", qos=1)
 
-# def on_publish(client,userdata,result):
-# 	print("data published \n")          
-
+          
+        
 # Create an MQTT client and attach our routines to it.
-client = mqtt.Client("pratama12")
+client = mqtt.Client("pratama18")
 client.username_pw_set(username=username,password=password)
 client.on_connect = on_connect
 client.on_message = on_message
-# client.on_publish  = on_publish
  
 client.connect(broker, port, timeout)
 
