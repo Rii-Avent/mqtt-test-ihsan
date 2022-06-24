@@ -28,7 +28,7 @@ client1.connect(broker,port,timeout)
 
 count = 0
 while count < 5:
-	status = str(input("Pesan anda: "))
+	status = str(input("Pesan anda silakan: "))
 	message = status
 	print(message)
 	ret = client1.publish(topic,payload=message,qos=1)
